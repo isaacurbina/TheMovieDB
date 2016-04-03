@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import com.orm.SugarRecord;
 import com.orm.dsl.Table;
 
-public class Video extends SugarRecord {
+public class Video {
 
     @SerializedName("mid")
     @Expose
@@ -43,7 +43,7 @@ public class Video extends SugarRecord {
     }
 
     /**
-     * 
+     *
      * @param mid
      *     The mid
      */

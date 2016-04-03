@@ -194,7 +194,7 @@ public class DetailActivity extends AppCompatActivity implements YouTubePlayer.O
             super.onPostExecute(resultstask);
             try {
                 if (resultstask==null) {
-                    Toast.makeText(DetailActivity.this, "No media found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailActivity.this, "No response from media", Toast.LENGTH_SHORT).show();
                 } else {
                     if (resultstask.size()>0) {
                         Video ytvideo = resultstask.get(resultstask.size()-1);
@@ -233,6 +233,7 @@ public class DetailActivity extends AppCompatActivity implements YouTubePlayer.O
                 resultsasync = pages.getResults();
             } catch (Exception e) {
                 Log.e("MYTAG", "Error getting media "+e.getMessage());
+                e.printStackTrace();
             }
 
             return resultsasync;

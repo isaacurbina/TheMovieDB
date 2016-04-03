@@ -6,8 +6,10 @@ import net.simonvt.schematic.annotation.NotNull;
 import net.simonvt.schematic.annotation.PrimaryKey;
 
 public interface VideoColumns {
-    @DataType(DataType.Type.TEXT) @PrimaryKey
-    String _ID = "mid";
+    @DataType(DataType.Type.INTEGER) @PrimaryKey
+    String _ID = "id";
+    @DataType(DataType.Type.TEXT)
+    String MID = "mid";
     @DataType(DataType.Type.TEXT)
     String ISO_639_1 = "iso_639_1";
     @DataType(DataType.Type.TEXT)

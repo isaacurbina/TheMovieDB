@@ -36,7 +36,6 @@
                 android:minHeight="400dp"
                 android:id="@+id/detail_poster"
                 android:layout_weight="1"
-                android:src="@android:drawable/ic_menu_gallery"
                 android:layout_gravity="center"
                 android:layout_alignParentTop="true" />
 
@@ -65,6 +64,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:hint="@string/search_year_hint"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             />
 
@@ -85,7 +85,7 @@
             android:textStyle="bold"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:hint="@string/search_year_hint"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             />
 
@@ -106,7 +106,7 @@
             android:textStyle="bold"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:hint="@string/search_year_hint"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             />
 
@@ -127,7 +127,7 @@
             android:textStyle="bold"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:hint="@string/search_year_hint"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             />
 

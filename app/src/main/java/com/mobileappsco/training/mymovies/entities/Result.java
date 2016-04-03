@@ -24,9 +24,6 @@ public class Result {
     @SerializedName("release_date")
     @Expose
     private String releaseDate;
-    @SerializedName("genre_ids")
-    @Expose
-    private List<Integer> genreIds = new ArrayList<Integer>();
     @SerializedName("id")
     @Expose
     private Long id;
@@ -129,24 +126,6 @@ public class Result {
      */
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
-    }
-
-    /**
-     * 
-     * @return
-     *     The genreIds
-     */
-    public List<Integer> getGenreIds() {
-        return genreIds;
-    }
-
-    /**
-     * 
-     * @param genreIds
-     *     The genre_ids
-     */
-    public void setGenreIds(List<Integer> genreIds) {
-        this.genreIds = genreIds;
     }
 
     /**

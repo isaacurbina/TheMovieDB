@@ -39,7 +39,6 @@
                 android:id="@+id/detail_poster"
                 android:paddingLeft="10dp"
                 android:paddingTop="10dp"
-                android:src="@android:drawable/ic_menu_gallery"
                 android:layout_gravity="center"
                 android:layout_alignParentTop="true" />
 
@@ -65,6 +64,7 @@
             android:layout_width="0dp"
             android:layout_weight="2"
             android:layout_height="match_parent">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -78,7 +78,7 @@
                     android:textStyle="bold"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:hint="@string/search_year_hint"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="18sp"
                     />
 
@@ -99,7 +99,7 @@
                     android:textStyle="bold"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:hint="@string/search_year_hint"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="18sp"
                     />
 
@@ -119,7 +119,7 @@
                     android:textStyle="bold"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:hint="@string/search_year_hint"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="18sp"
                     />
 
@@ -131,7 +131,7 @@
                     android:paddingRight="10dp"
                     android:hint="@string/card_overview_hint"
                     android:textSize="14sp"
-                    android:layout_marginBottom="10dp"/>
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -140,7 +140,7 @@
                     android:textStyle="bold"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:hint="@string/search_year_hint"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="18sp"
                     />
 

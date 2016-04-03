@@ -32,6 +32,4 @@ public interface ResultColumns {
     String VIDEO = "video";
     @DataType(DataType.Type.REAL) @NotNull
     String VOTE_AVERAGE = "vote_average";
-    @DataType(DataType.Type.TEXT)
-    String GENRE_IDS = "vote_average";
 }

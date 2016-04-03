@@ -29,12 +29,12 @@ public final class MoviesProvider {
             ResultColumns.POPULARITY,
             ResultColumns.VOTE_COUNT,
             ResultColumns.VIDEO,
-            ResultColumns.VOTE_AVERAGE,
-            ResultColumns.GENRE_IDS
+            ResultColumns.VOTE_AVERAGE
     };
 
     public static final String[] TRAILERS_PROJECTION = new String[]{
             VideoColumns._ID,
+            VideoColumns.MID,
             VideoColumns.ISO_639_1,
             VideoColumns.ISO_3166_1,
             VideoColumns.KEY,
