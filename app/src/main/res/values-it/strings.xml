@@ -19,4 +19,7 @@
     <string name="trailer">Trailer:</string>
     <string name="original_title">Titolo Originale:</string>
     <string name="overview">Sinossi:</string>
+    <string name="favorites">Preferiti</string>
+    <string name="save_favorite">Salva tra i Preferiti</string>
+    <string name="added_to_favorites">Salvato ai Preferiti</string>
 </resources>

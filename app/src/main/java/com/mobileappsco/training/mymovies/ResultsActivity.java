@@ -90,7 +90,7 @@ public class ResultsActivity extends AppCompatActivity {
                     page++;
                     if (isNetworkAvailable()) {
                         fetchContent();
-                        Toast.makeText(context, "Loading page " + page, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(context, "Loading page " + page, Toast.LENGTH_SHORT).show();
                     }
                 }
             }

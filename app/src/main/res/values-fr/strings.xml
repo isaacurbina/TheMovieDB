@@ -19,4 +19,7 @@
     <string name="release_date">Date de Sortie:</string>
     <string name="overview">Sommaire:</string>
     <string name="original_title">Titre Original:</string>
+    <string name="favorites">Favoris</string>
+    <string name="save_favorite">Enregistrer sur Favoris</string>
+    <string name="added_to_favorites">Enregistré sur Favoris</string>
 </resources>

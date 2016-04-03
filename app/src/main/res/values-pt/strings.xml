@@ -19,4 +19,7 @@
     <string name="release_date">Data de Lançamento:</string>
     <string name="overview">Sinopse:</string>
     <string name="original_title">Título Original:</string>
+    <string name="favorites">Favoritos</string>
+    <string name="save_favorite">Guardar Favorito</string>
+    <string name="added_to_favorites">Guardado em Favoritos</string>
 </resources>

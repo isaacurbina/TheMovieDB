@@ -19,4 +19,7 @@
     <string name="overview">简介:</string>
     <string name="original_title">原的标题:</string>
     <string name="trailer">电视广告:</string>
+    <string name="favorites">最爱的</string>
+    <string name="save_favorite"> 保存最爱</string>
+    <string name="added_to_favorites"> 保存到最爱</string>
 </resources>

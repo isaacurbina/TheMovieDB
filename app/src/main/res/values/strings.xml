@@ -40,6 +40,6 @@
     <string name="trailer">Trailer:</string>
     <string name="favorites">Favorites</string>
     <string name="save_favorite">Add to Favorites</string>
-    <string name="added_to_favorites">Movie added to favorites</string>
+    <string name="added_to_favorites">Added to Favorites</string>
 
 </resources>
