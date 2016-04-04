@@ -51,6 +51,7 @@ public class DetailActivity extends AppCompatActivity implements YouTubePlayer.O
     String YOUTUBE_VIDEO_V;
     ActionBar actionBar;
     String result_id;
+    Menu menufav;
 
     // TODO read videos from youtube for the detail view
     @Override
@@ -102,7 +103,6 @@ public class DetailActivity extends AppCompatActivity implements YouTubePlayer.O
         Glide.with(this)
                 .load(API_IMAGE_URL + result.getPosterPath())
                 .into(detailPoster);
-        //actionBar.setTitle(result.getTitle());
     }
 
     public void loadYoutubeVideo(String id) {
@@ -156,6 +156,7 @@ public class DetailActivity extends AppCompatActivity implements YouTubePlayer.O
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.detail_menu, menu);
+        menufav = menu;
         return true;
     }
 
@@ -172,9 +173,17 @@ public class DetailActivity extends AppCompatActivity implements YouTubePlayer.O
             fav.setId(Long.parseLong(result_id));
             SugarRecord.save(fav);
             Toast.makeText(this, R.string.added_to_favorites, Toast.LENGTH_SHORT).show();
+            menufav.setGroupVisible(R.id.is_favorite, true);
+            menufav.setGroupVisible(R.id.not_favorite, false);
+            return true;
+        } else if (id == R.id.delete_favorite) {
+            Favorites fav = SugarRecord.findById(Favorites.class, Integer.parseInt(result_id));
+            SugarRecord.delete(fav);
+            Toast.makeText(this, R.string.removed_from_favorites, Toast.LENGTH_SHORT).show();
+            menufav.setGroupVisible(R.id.is_favorite, false);
+            menufav.setGroupVisible(R.id.not_favorite, true);
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -209,6 +218,14 @@ public class DetailActivity extends AppCompatActivity implements YouTubePlayer.O
                                 .remove(youTubeFragment)
                                 .commit();
                     }
+                }
+                Favorites fav = SugarRecord.findById(Favorites.class, Integer.parseInt(result_id));
+                if (fav != null) {
+                    menufav.setGroupVisible(R.id.is_favorite, true);
+                    menufav.setGroupVisible(R.id.not_favorite, false);
+                } else {
+                    menufav.setGroupVisible(R.id.is_favorite, false);
+                    menufav.setGroupVisible(R.id.not_favorite, true);
                 }
             } catch (Exception e) {
 

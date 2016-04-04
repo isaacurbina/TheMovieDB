@@ -41,11 +41,13 @@
     <string name="favorites">Favorites</string>
     <string name="save_favorite">Add to Favorites</string>
     <string name="added_to_favorites">Added to Favorites</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main" translatable="false">MainActivity</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="menu_popular">Most Popular</string>
-    <string name="menu_upcoming">Upcoming</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="menu_popular">Popular Now</string>
+    <string name="menu_upcoming">Coming Soon</string>
+    <string name="removed_from_favorites">Removed from Favorites</string>
+    <string name="delete_favorite">Remove from Favorites</string>
 
 </resources>

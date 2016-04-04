@@ -13,7 +13,7 @@ public interface RetrofitInterface {
     @GET("discover/movie")
     Call<PageResults> mostPopularMovies(
             @Query("api_key") String apikey,
-            @Query("primary_release_date.gte") String today,
+            @Query("sort_by") String sort_by,
             @Query("page") String page,
             @Query("language") String language
     );
@@ -21,7 +21,7 @@ public interface RetrofitInterface {
     @GET("discover/movie")
     Call<PageResults> upcomingMovies(
             @Query("api_key") String apikey,
-            @Query("sort_by") String sort_by,
+            @Query("primary_release_date.gte") String today,
             @Query("page") String page,
             @Query("language") String language
     );

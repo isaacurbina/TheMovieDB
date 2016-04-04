@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/save_favorite"
-        android:title="@string/save_favorite"
-        android:showAsAction="always"/>
+    <group
+        android:id="@+id/not_favorite">
+        <item android:id="@+id/save_favorite"
+            android:title="@string/save_favorite"
+            android:showAsAction="always"/>
+    </group>
+    <group
+        android:id="@+id/is_favorite">
+        <item android:id="@+id/delete_favorite"
+            android:title="@string/delete_favorite"
+            android:showAsAction="always"/>
+    </group>
 </menu>

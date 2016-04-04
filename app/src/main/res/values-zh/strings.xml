@@ -22,4 +22,8 @@
     <string name="favorites">最爱的</string>
     <string name="save_favorite"> 保存最爱</string>
     <string name="added_to_favorites"> 保存到最爱</string>
+    <string name="menu_popular">现在流行</string>
+    <string name="menu_upcoming">即将发布</string>
+    <string name="removed_from_favorites">从收藏夹中删除</string>
+    <string name="delete_favorite">从收藏夹中删除</string>
 </resources>

@@ -9,6 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:id="@+id/tablet"
+    android:layout_marginTop="?android:attr/actionBarSize"
     tools:context=".ui.ResultsActivity">
 
     <android.support.v7.widget.RecyclerView

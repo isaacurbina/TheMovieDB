@@ -22,4 +22,8 @@
     <string name="favorites">Favoritos</string>
     <string name="save_favorite">Guardar Favorito</string>
     <string name="added_to_favorites">Guardado em Favoritos</string>
+    <string name="menu_upcoming">Próximos Estrenos</string>
+    <string name="menu_popular">Populares agora</string>
+    <string name="removed_from_favorites">Removido dos Favoritos</string>
+    <string name="delete_favorite">Remover dos Favoritos</string>
 </resources>
