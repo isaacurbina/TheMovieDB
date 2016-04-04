@@ -11,7 +11,15 @@ import retrofit2.http.Query;
 public interface RetrofitInterface {
 
     @GET("discover/movie")
-    Call<PageResults> discoverMovies(
+    Call<PageResults> mostPopularMovies(
+            @Query("api_key") String apikey,
+            @Query("primary_release_date.gte") String today,
+            @Query("page") String page,
+            @Query("language") String language
+    );
+
+    @GET("discover/movie")
+    Call<PageResults> upcomingMovies(
             @Query("api_key") String apikey,
             @Query("sort_by") String sort_by,
             @Query("page") String page,
@@ -52,4 +60,5 @@ public interface RetrofitInterface {
             @Query("api_key") String apikey,
             @Query("language") String language
     );
+
 }

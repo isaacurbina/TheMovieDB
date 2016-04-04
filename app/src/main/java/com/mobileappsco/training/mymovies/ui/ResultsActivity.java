@@ -1,4 +1,4 @@
-package com.mobileappsco.training.mymovies;
+package com.mobileappsco.training.mymovies.ui;
 
 import android.app.SearchManager;
 import android.content.Context;
@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mobileappsco.training.mymovies.R;
 import com.mobileappsco.training.mymovies.adapters.RVAdapter;
 import com.mobileappsco.training.mymovies.entities.Favorites;
 import com.mobileappsco.training.mymovies.entities.PageResults;
@@ -385,7 +386,7 @@ public class ResultsActivity extends AppCompatActivity {
                         language);
             } else {
                 Log.i("MYTAG", "search newest");
-                request = rfInterface.discoverMovies(
+                request = rfInterface.mostPopularMovies(
                         api_key,
                         "popularity.desc",
                         page,

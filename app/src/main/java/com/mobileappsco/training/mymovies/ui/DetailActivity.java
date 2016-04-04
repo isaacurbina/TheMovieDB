@@ -1,4 +1,4 @@
-package com.mobileappsco.training.mymovies;
+package com.mobileappsco.training.mymovies.ui;
 
 import android.app.ActionBar;
 import android.content.Intent;
@@ -18,6 +18,7 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerFragment;
 import com.google.android.youtube.player.YouTubePlayerView;
+import com.mobileappsco.training.mymovies.R;
 import com.mobileappsco.training.mymovies.entities.Favorites;
 import com.mobileappsco.training.mymovies.entities.PageVideos;
 import com.mobileappsco.training.mymovies.entities.Result;

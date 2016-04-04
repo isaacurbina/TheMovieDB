@@ -36,4 +36,5 @@ dependencies {
     compile files('libs/YouTubeAndroidPlayerApi.jar')
     apt 'net.simonvt.schematic:schematic-compiler:0.6.4'
     compile 'net.simonvt.schematic:schematic:0.6.4'
+    compile 'net.danlew:android.joda:2.9.3'
 }

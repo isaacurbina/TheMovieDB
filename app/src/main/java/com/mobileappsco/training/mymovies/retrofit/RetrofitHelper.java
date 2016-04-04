@@ -1,6 +1,8 @@
 package com.mobileappsco.training.mymovies.retrofit;
 
+import com.mobileappsco.training.mymovies.entities.PageResults;
 import com.mobileappsco.training.mymovies.entities.PageVideos;
+import com.mobileappsco.training.mymovies.entities.Result;
 import com.mobileappsco.training.mymovies.entities.Video;
 
 import retrofit2.Call;
@@ -17,14 +19,29 @@ public class RetrofitHelper {
                 .build();
         RetrofitInterface rfInterface = retrofit.create(RetrofitInterface.class);
 
-        // TEST CASE FOR MOVIE LIST
-        /*Call<PageResults> request = rfInterface.discoverMovies("cac0b89ef7b5aa3a980f240f7c20af68",
+        // TEST CASE FOR UPCOMING MOVIES
+        Call<PageResults> request = rfInterface.mostPopularMovies("cac0b89ef7b5aa3a980f240f7c20af68",
+                                            "2016-4-4",
+                                            "1",
+                                            "en");
+
+        PageResults pages = null;
+        try {
+            pages = request.execute().body();
+            for (Result result : pages.getResults()) {
+                System.out.println(result.getId()+" "+result.getTitle());
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        // TEST CASE FOR POPULAR NOW MOVIES
+        /*Call<PageResults> request = rfInterface.mostPopularMovies("cac0b89ef7b5aa3a980f240f7c20af68",
                                             "popularity.desc",
                                             "1",
                                             "pt");
 
         PageResults pages = null;
-
         try {
             pages = request.execute().body();
             for (Result result : pages.getResults()) {
@@ -35,7 +52,7 @@ public class RetrofitHelper {
         }*/
 
         // TEST CASE FOR MEDIA BY MOVIE ID
-        Call<PageVideos> request = rfInterface.fetchVideosOfMovie(
+        /*Call<PageVideos> request = rfInterface.fetchVideosOfMovie(
                 "110415",
                 "cac0b89ef7b5aa3a980f240f7c20af68",
                 "en");
@@ -49,6 +66,6 @@ public class RetrofitHelper {
             }
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
-        }
+        }*/
     }
 }
