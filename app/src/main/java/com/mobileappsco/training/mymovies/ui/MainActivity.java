@@ -130,19 +130,34 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         });
-        recyclerView.addOnItemTouchListener(
-                new RecyclerItemClickListener(context, new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        TextView card_id = (TextView) view.findViewById(R.id.card_id);
-                        String result_id = card_id.getText().toString();
-                        //Toast.makeText(context, "click en :" + card_id.getText(), Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(context, DetailActivity.class);
-                        i.putExtra("result_id", result_id);
-                        startActivity(i);
-                    }
-                })
-        );
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(context, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                TextView card_id = (TextView) view.findViewById(R.id.card_id);
+                String result_id = card_id.getText().toString();
+                Intent i = new Intent(context, DetailActivity.class);
+                i.putExtra("result_id", result_id);
+                startActivity(i);
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+                TextView card_id = (TextView) view.findViewById(R.id.card_id);
+                String result_id = card_id.getText().toString();
+                Favorites fav = SugarRecord.findById(Favorites.class, Integer.parseInt(result_id));
+                if (fav == null) {
+                    Log.i("MYTAG", "Save as favorite");
+                    fav = new Favorites();
+                    fav.setId(Long.parseLong(result_id));
+                    SugarRecord.save(fav);
+                    Toast.makeText(context, R.string.added_to_favorites, Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.i("MYTAG", "Delete from favorites");
+                    SugarRecord.delete(fav);
+                    Toast.makeText(context, R.string.removed_from_favorites, Toast.LENGTH_SHORT).show();
+                }
+            }
+        }));
         // fetch movies for the first page
         handleIntent(getIntent());
         fetchContent();
