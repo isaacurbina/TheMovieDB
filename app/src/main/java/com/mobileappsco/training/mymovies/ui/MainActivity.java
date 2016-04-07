@@ -30,7 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mobileappsco.training.mymovies.R;
-import com.mobileappsco.training.mymovies.adapters.RVAdapter;
+import com.mobileappsco.training.mymovies.adapters.RVResultsAdapter;
 import com.mobileappsco.training.mymovies.entities.Favorites;
 import com.mobileappsco.training.mymovies.entities.PageResults;
 import com.mobileappsco.training.mymovies.entities.Result;
@@ -43,7 +43,6 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import retrofit2.Call;
@@ -57,7 +56,7 @@ public class MainActivity extends AppCompatActivity
     String RESTAG = "RESTAG";
     RecyclerView recyclerView;
     LinearLayoutManager llm;
-    RVAdapter adapter;
+    RVResultsAdapter adapter;
     Context context;
     StaggeredGridLayoutManager staggeredGridLayoutManager;
     boolean loading = false;
@@ -374,7 +373,7 @@ public class MainActivity extends AppCompatActivity
             super.onPostExecute(resultstask);
             if (adapter!=null)
                 adapter.clearResults();
-            adapter = new RVAdapter(context, resultstask);
+            adapter = new RVResultsAdapter(context, resultstask);
             recyclerView.scrollToPosition(0);
             recyclerView.swapAdapter(adapter, false);
             adapter.notifyDataSetChanged();
@@ -445,7 +444,7 @@ public class MainActivity extends AppCompatActivity
                     } else {
                         if (adapter != null)
                             adapter.clearResults();
-                        adapter = new RVAdapter(context, resultstask);
+                        adapter = new RVResultsAdapter(context, resultstask);
                         recyclerView.scrollToPosition(0);
                         recyclerView.swapAdapter(adapter, false);
                         adapter.notifyDataSetChanged();
@@ -494,7 +493,7 @@ public class MainActivity extends AppCompatActivity
             Call<PageResults> request;
             if (hasTitle && !hasYear) {
                 Log.i("MYTAG", "search by title");
-                request = rfInterface.searchMovieByTitle(
+                request = rfInterface.searchMoviesByTitle(
                         api_key,
                         search_title,
                         "popularity.desc",
@@ -502,7 +501,7 @@ public class MainActivity extends AppCompatActivity
                         language);
             } else if (!hasTitle && hasYear) {
                 Log.i("MYTAG", "search by year");
-                request = rfInterface.searchMovieByYear(
+                request = rfInterface.searchMoviesByYear(
                         api_key,
                         search_year,
                         "popularity.desc",
@@ -510,7 +509,7 @@ public class MainActivity extends AppCompatActivity
                         language);
             } else if (hasTitle && hasYear) {
                 Log.i("MYTAG", "search by title and year");
-                request = rfInterface.searchMovieByTitleAndYear(
+                request = rfInterface.searchMoviesByTitleAndYear(
                         api_key,
                         search_title,
                         search_year,
@@ -559,7 +558,7 @@ public class MainActivity extends AppCompatActivity
             super.onPostExecute(resultstask);
             if (adapter!=null)
                 adapter.clearResults();
-            adapter = new RVAdapter(context, resultstask);
+            adapter = new RVResultsAdapter(context, resultstask);
             recyclerView.scrollToPosition(0);
             recyclerView.swapAdapter(adapter, false);
             adapter.notifyDataSetChanged();

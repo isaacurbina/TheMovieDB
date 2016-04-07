@@ -49,5 +49,10 @@
     <string name="menu_upcoming">Coming Soon</string>
     <string name="removed_from_favorites">Removed from Favorites</string>
     <string name="delete_favorite">Remove from Favorites</string>
+    <string name="reviews">Reviews:</string>
+    <string name="reviews_hint">No reviews at the moment</string>
+    <string name="detail_review_author">Autor:</string>
+    <string name="detaul_review_content">Comment:</string>
+    <string name="detail_review_content">Review content goes here...</string>
 
 </resources>

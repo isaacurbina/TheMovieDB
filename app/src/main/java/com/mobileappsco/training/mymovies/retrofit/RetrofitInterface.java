@@ -1,6 +1,7 @@
 package com.mobileappsco.training.mymovies.retrofit;
 
 import com.mobileappsco.training.mymovies.entities.PageResults;
+import com.mobileappsco.training.mymovies.entities.PageReviews;
 import com.mobileappsco.training.mymovies.entities.PageVideos;
 
 import retrofit2.Call;
@@ -27,7 +28,7 @@ public interface RetrofitInterface {
     );
 
     @GET("search/movie")
-    Call<PageResults> searchMovieByTitle(
+    Call<PageResults> searchMoviesByTitle(
             @Query("api_key") String apikey,
             @Query("query") String title,
             @Query("sort_by") String sort_by,
@@ -36,7 +37,7 @@ public interface RetrofitInterface {
     );
 
     @GET("discover/movie")
-    Call<PageResults> searchMovieByYear(
+    Call<PageResults> searchMoviesByYear(
             @Query("api_key") String apikey,
             @Query("primary_release_year") String year,
             @Query("sort_by") String sort_by,
@@ -45,7 +46,7 @@ public interface RetrofitInterface {
     );
 
     @GET("search/movie")
-    Call<PageResults> searchMovieByTitleAndYear(
+    Call<PageResults> searchMoviesByTitleAndYear(
             @Query("api_key") String apikey,
             @Query("query") String title,
             @Query("primary_release_year") String year,
@@ -55,7 +56,14 @@ public interface RetrofitInterface {
     );
 
     @GET("movie/{id}/videos")
-    Call<PageVideos> fetchVideosOfMovie(
+    Call<PageVideos> fetchMovieTrailers(
+            @Path("id") String id,
+            @Query("api_key") String apikey,
+            @Query("language") String language
+    );
+
+    @GET("movie/{id}/reviews")
+    Call<PageReviews> fetchMovieReviews(
             @Path("id") String id,
             @Query("api_key") String apikey,
             @Query("language") String language

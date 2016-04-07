@@ -15,13 +15,13 @@ import com.mobileappsco.training.mymovies.R;
 
 import java.util.List;
 
-public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ResultViewHolder>  {
+public class RVResultsAdapter extends RecyclerView.Adapter<RVResultsAdapter.ResultViewHolder>  {
 
     List<Result> results;
     Context context;
     String API_IMAGE_URL;
 
-    public RVAdapter(Context context, List<Result> results){
+    public RVResultsAdapter(Context context, List<Result> results){
         this.context = context;
         this.results = results;
         API_IMAGE_URL = context.getString(R.string.API_IMAGES_URL);
@@ -29,7 +29,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ResultViewHolder> 
 
     @Override
     public ResultViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_results, parent, false);
         ResultViewHolder cvh = new ResultViewHolder(v);
         return cvh;
     }

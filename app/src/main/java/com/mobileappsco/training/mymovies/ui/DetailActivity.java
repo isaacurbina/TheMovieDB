@@ -2,9 +2,14 @@ package com.mobileappsco.training.mymovies.ui;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,9 +24,13 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerFragment;
 import com.google.android.youtube.player.YouTubePlayerView;
 import com.mobileappsco.training.mymovies.R;
+import com.mobileappsco.training.mymovies.adapters.RVResultsAdapter;
+import com.mobileappsco.training.mymovies.adapters.RVReviewsAdapter;
 import com.mobileappsco.training.mymovies.entities.Favorites;
+import com.mobileappsco.training.mymovies.entities.PageReviews;
 import com.mobileappsco.training.mymovies.entities.PageVideos;
 import com.mobileappsco.training.mymovies.entities.Result;
+import com.mobileappsco.training.mymovies.entities.Review;
 import com.mobileappsco.training.mymovies.entities.Video;
 import com.mobileappsco.training.mymovies.retrofit.RetrofitInterface;
 import com.orm.SugarRecord;
@@ -52,6 +61,9 @@ public class DetailActivity extends AppCompatActivity implements YouTubePlayer.O
     ActionBar actionBar;
     String result_id;
     Menu menufav;
+    RecyclerView recyclerView;
+    LinearLayoutManager linearLayoutManager;
+    RVReviewsAdapter adapter;
 
     // TODO read videos from youtube for the detail view
     @Override
@@ -81,6 +93,16 @@ public class DetailActivity extends AppCompatActivity implements YouTubePlayer.O
         if (getIntent().hasExtra("result_id")) {
             initDetails();
         }
+
+        // Recycler View in ResultsFragment
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_list_reviews);
+        recyclerView.setHasFixedSize(true);
+        linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
+        itemAnimator.setAddDuration(3000);
+        itemAnimator.setRemoveDuration(3000);
+        recyclerView.setItemAnimator(itemAnimator);
+        recyclerView.setLayoutManager(linearLayoutManager);
     }
 
     public void initDetails() {
@@ -108,8 +130,10 @@ public class DetailActivity extends AppCompatActivity implements YouTubePlayer.O
     public void loadYoutubeVideo(String id) {
         // TODO start asynctask here
         Log.i("MYTAG", "Loading media for: " + id);
-        FetchMovieMedia mytask = new FetchMovieMedia();
-        mytask.execute(id, API_KEY, language);
+        FetchMovieMedia mediatask = new FetchMovieMedia();
+        mediatask.execute(id, API_KEY, language);
+        FetchMovieReviews reviewstask = new FetchMovieReviews();
+        reviewstask.execute(id, API_KEY, language);
     }
 
     public void setupVideo(String v) {
@@ -239,7 +263,7 @@ public class DetailActivity extends AppCompatActivity implements YouTubePlayer.O
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             RetrofitInterface rfInterface = retrofit.create(RetrofitInterface.class);
-            Call<PageVideos> request = rfInterface.fetchVideosOfMovie(
+            Call<PageVideos> request = rfInterface.fetchMovieTrailers(
                     params[0],
                     params[1],
                     params[2]);
@@ -253,8 +277,60 @@ public class DetailActivity extends AppCompatActivity implements YouTubePlayer.O
                 Log.e("MYTAG", "Error getting media "+e.getMessage());
                 e.printStackTrace();
             }
-
             return resultsasync;
         }
+    }
+
+    private class FetchMovieReviews extends AsyncTask<String, Integer, List<Review>> {
+
+        @Override
+        protected List<Review> doInBackground(String... params) {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(getResources().getString(R.string.API_JSON_URL))
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            RetrofitInterface rfInterface = retrofit.create(RetrofitInterface.class);
+            Call<PageReviews> request = rfInterface.fetchMovieReviews(
+                    params[0],
+                    params[1],
+                    params[2]);
+
+            List<Review> resultsasync = new ArrayList<>();
+            PageReviews pages = null;
+            try {
+                pages = request.execute().body();
+                resultsasync = pages.getResults();
+            } catch (Exception e) {
+                Log.e("MYTAG", "Error getting reviews "+e.getMessage());
+                e.printStackTrace();
+            }
+            return resultsasync;
+        }
+
+        @Override
+        protected void onPostExecute(List<Review> resultstask) {
+            super.onPostExecute(resultstask);
+            try {
+                if (resultstask==null) {
+                    Toast.makeText(DetailActivity.this, "No response from reviews", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (resultstask.size()>0) {
+                        for (Review rev:resultstask) {
+                            /*Log.i("MYTAG", "Review => "+rev.getId()+
+                                    "\nAuthor: "+rev.getAuthor()+
+                                    "\nContent: "+rev.getContent());*/
+                            adapter = new RVReviewsAdapter(resultstask);
+                            recyclerView.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+                        }
+                    } else {
+                        Log.i("MYTAG", "No reviews found");
+                    }
+                }
+            } catch (Exception e) {
+
+            }
+        }
+
     }
 }
