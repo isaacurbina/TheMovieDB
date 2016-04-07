@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -115,6 +116,10 @@ public class MainActivity extends AppCompatActivity
         recyclerView = (RecyclerView) findViewById(R.id.recycler_list_results);
         recyclerView.setHasFixedSize(true);
         staggeredGridLayoutManager = new StaggeredGridLayoutManager(columns, 1);
+        RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
+        itemAnimator.setAddDuration(3000);
+        itemAnimator.setRemoveDuration(3000);
+        recyclerView.setItemAnimator(itemAnimator);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
         recyclerView.setOnScrollListener(new EndlessRecyclerOnScrollListener(staggeredGridLayoutManager) {
             @Override
@@ -438,7 +443,7 @@ public class MainActivity extends AppCompatActivity
                     if (adapter != null) {
                         adapter.addResultList(resultstask);
                     } else {
-                        if (adapter!=null)
+                        if (adapter != null)
                             adapter.clearResults();
                         adapter = new RVAdapter(context, resultstask);
                         recyclerView.scrollToPosition(0);
