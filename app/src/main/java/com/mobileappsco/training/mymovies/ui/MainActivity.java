@@ -173,6 +173,15 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    public void restartVariables() {
+        search_title = "";
+        search_year = "";
+        show_favorites = "";
+        show_upcoming = "";
+        page = 1;
+        adapter = null;
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -180,17 +189,25 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_popular) {
-            Intent i = new Intent(this, MainActivity.class);
-            startActivity(i);
+            /*Intent i = new Intent(this, MainActivity.class);
+            startActivity(i);*/
+            restartVariables();
+            fetchContent();
         } else if (id == R.id.nav_upcoming) {
-            Intent i = new Intent(this, MainActivity.class);
             DateTime dt = new DateTime(DateTimeZone.UTC);
+            /*Intent i = new Intent(this, MainActivity.class);
             i.putExtra("show_upcoming", dt.toString().substring(0,10));
-            startActivity(i);
+            startActivity(i);*/
+            restartVariables();
+            show_upcoming = dt.toString().substring(0,10);
+            fetchContent();
         } else if (id == R.id.nav_favorites) {
-            Intent i = new Intent(this, MainActivity.class);
+            /*Intent i = new Intent(this, MainActivity.class);
             i.putExtra("show_favorites", "favorites");
-            startActivity(i);
+            startActivity(i);*/
+            restartVariables();
+            show_favorites = "favorites";
+            fetchContent();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -225,6 +242,7 @@ public class MainActivity extends AppCompatActivity
         } else if (getIntent().hasExtra("show_upcoming")) {
             show_upcoming = getIntent().getExtras().getString("show_upcoming");
         }
+        
     }
 
     @Override
@@ -349,8 +367,12 @@ public class MainActivity extends AppCompatActivity
         @Override
         protected void onPostExecute(List<Result> resultstask) {
             super.onPostExecute(resultstask);
+            if (adapter!=null)
+                adapter.clearResults();
             adapter = new RVAdapter(context, resultstask);
-            recyclerView.setAdapter(adapter);
+            recyclerView.scrollToPosition(0);
+            recyclerView.swapAdapter(adapter, false);
+            adapter.notifyDataSetChanged();
         }
 
         @Override
@@ -416,8 +438,12 @@ public class MainActivity extends AppCompatActivity
                     if (adapter != null) {
                         adapter.addResultList(resultstask);
                     } else {
+                        if (adapter!=null)
+                            adapter.clearResults();
                         adapter = new RVAdapter(context, resultstask);
-                        recyclerView.setAdapter(adapter);
+                        recyclerView.scrollToPosition(0);
+                        recyclerView.swapAdapter(adapter, false);
+                        adapter.notifyDataSetChanged();
                     }
                     for (Result res1 : resultstask) {
                         // List<Result> res2 = Result.find(Result.class, "id = ?", res1.getId().toString());
@@ -513,7 +539,6 @@ public class MainActivity extends AppCompatActivity
                 e.printStackTrace();
             }
             return resultsasync;
-
         }
     }
 
@@ -527,8 +552,12 @@ public class MainActivity extends AppCompatActivity
         @Override
         protected void onPostExecute(List<Result> resultstask) {
             super.onPostExecute(resultstask);
+            if (adapter!=null)
+                adapter.clearResults();
             adapter = new RVAdapter(context, resultstask);
-            recyclerView.setAdapter(adapter);
+            recyclerView.scrollToPosition(0);
+            recyclerView.swapAdapter(adapter, false);
+            adapter.notifyDataSetChanged();
         }
 
         @Override

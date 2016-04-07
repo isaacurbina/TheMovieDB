@@ -20,8 +20,8 @@ public class RetrofitHelper {
         RetrofitInterface rfInterface = retrofit.create(RetrofitInterface.class);
 
         // TEST CASE FOR UPCOMING MOVIES
-        /*Call<PageResults> request = rfInterface.mostPopularMovies("cac0b89ef7b5aa3a980f240f7c20af68",
-                                            "2016-4-4",
+        Call<PageResults> request = rfInterface.upcomingMovies("cac0b89ef7b5aa3a980f240f7c20af68",
+                                            "1306691868",
                                             "1",
                                             "en");
 
@@ -33,10 +33,10 @@ public class RetrofitHelper {
             }
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
-        }*/
+        }
 
         // TEST CASE FOR POPULAR NOW MOVIES
-        Call<PageResults> request = rfInterface.mostPopularMovies("cac0b89ef7b5aa3a980f240f7c20af68",
+        /*Call<PageResults> request = rfInterface.mostPopularMovies("cac0b89ef7b5aa3a980f240f7c20af68",
                                             "popularity.desc",
                                             "1",
                                             "pt");
@@ -49,7 +49,7 @@ public class RetrofitHelper {
             }
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
-        }
+        }*/
 
         // TEST CASE FOR MEDIA BY MOVIE ID
         /*Call<PageVideos> request = rfInterface.fetchVideosOfMovie(

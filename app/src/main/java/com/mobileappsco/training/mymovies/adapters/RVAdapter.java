@@ -63,6 +63,16 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ResultViewHolder> 
         notifyDataSetChanged();
     }
 
+    public void clearResults() {
+        int size = this.results.size();
+        if (size > 0) {
+            for (int i = 0; i < size; i++) {
+                this.results.remove(0);
+            }
+            this.notifyItemRangeRemoved(0, size);
+        }
+    }
+
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
