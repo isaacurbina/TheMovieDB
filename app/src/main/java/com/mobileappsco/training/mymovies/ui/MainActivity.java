@@ -330,7 +330,7 @@ public class MainActivity extends AppCompatActivity
         if (findViewById(R.id.tablet) != null)
             return 3;
         else if (findViewById(R.id.tablet_land) != null)
-            return 4;
+            return 5;
         else if (findViewById(R.id.phone_land) != null)
             return 3;
         else
