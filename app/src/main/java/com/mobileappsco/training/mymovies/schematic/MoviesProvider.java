@@ -15,6 +15,7 @@ public final class MoviesProvider {
     public static final String AUTHORITY = "com.mobileappsco.training.mymovies";
     public static final String MOVIES_PATH = "movies";
     public static final String TRAILERS_PATH = "trailers";
+    public static final String REVIEWS_PATH = "reviews";
 
     public static final String[] MOVIES_PROJECTION = new String[]{
             ResultColumns._ID,
@@ -42,6 +43,13 @@ public final class MoviesProvider {
             VideoColumns.SITE,
             VideoColumns.SIZE,
             VideoColumns.TYPE
+    };
+
+    public static final String[] REVIEWS_PROJECTION = new String[] {
+            ReviewColumns._ID,
+            ReviewColumns.MID,
+            ReviewColumns.CONTENT,
+            ReviewColumns.URL
     };
 
     @TableEndpoint(table = TheMovieDB.MOVIES)
@@ -94,6 +102,7 @@ public final class MoviesProvider {
             return Uri.parse("content://" + AUTHORITY + "/movies/title/" + title + "/year/" + year);
         }
     }
+
     @TableEndpoint(table = TheMovieDB.TRAILERS)
     public static class Trailers {
         // General query, returns a set of records
@@ -111,6 +120,26 @@ public final class MoviesProvider {
                 pathSegment = 1)
         public static Uri withId(long id) {
             return Uri.parse("content://" + AUTHORITY + "/trailers/" + id);
+        }
+    }
+
+    @TableEndpoint(table = TheMovieDB.REVIEWS)
+    public static class Reviews {
+        // General query, returns a set of records
+        @ContentUri(
+                path = "reviews",
+                type = "vnd.android.cursor.dir/list",
+                defaultSort = ReviewColumns._ID + " DESC")
+        public static final Uri TRAILERS = Uri.parse("content://" + AUTHORITY + "/reviews");
+        // Query by ID, returns a set of records
+        @InexactContentUri(
+                path = "trailers/#",
+                name = "TRAILER_ID",
+                type = "vnd.android.cursor.dir/list",
+                whereColumn = ReviewColumns._ID,
+                pathSegment = 1)
+        public static Uri withId(long id) {
+            return Uri.parse("content://" + AUTHORITY + "/reviews/" + id);
         }
     }
 

@@ -12,4 +12,5 @@ public final class TheMovieDB {
 
     @Table(ResultColumns.class) public static final String MOVIES = "Result";
     @Table(VideoColumns.class) public static final String TRAILERS = "Video";
+    @Table(ReviewColumns.class) public static final String REVIEWS = "Review";
 }
