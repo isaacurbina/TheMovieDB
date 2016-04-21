@@ -26,4 +26,9 @@
     <string name="menu_upcoming">Próximos Estrenos</string>
     <string name="removed_from_favorites">Borrado de Favoritos</string>
     <string name="delete_favorite">Remover de Favoritos</string>
+    <string name="detail_review_author">Autor:</string>
+    <string name="detail_review_content">La reseña va aquí</string>
+    <string name="detaul_review_content">Comentario:</string>
+    <string name="reviews">Reseñas:</string>
+    <string name="reviews_hint">Por el momento no hay reseñas</string>
 </resources>

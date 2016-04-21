@@ -54,5 +54,6 @@
     <string name="detail_review_author">Autor:</string>
     <string name="detaul_review_content">Comment:</string>
     <string name="detail_review_content">Review content goes here...</string>
+    <string name="APP_ID" translatable="false">com.mobileappsco.training.mymovies</string>
 
 </resources>

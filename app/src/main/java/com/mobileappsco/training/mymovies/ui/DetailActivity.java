@@ -2,14 +2,12 @@ package com.mobileappsco.training.mymovies.ui;
 
 import android.app.ActionBar;
 import android.content.Intent;
-import android.graphics.drawable.GradientDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +22,6 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerFragment;
 import com.google.android.youtube.player.YouTubePlayerView;
 import com.mobileappsco.training.mymovies.R;
-import com.mobileappsco.training.mymovies.adapters.RVResultsAdapter;
 import com.mobileappsco.training.mymovies.adapters.RVReviewsAdapter;
 import com.mobileappsco.training.mymovies.entities.Favorites;
 import com.mobileappsco.training.mymovies.entities.PageReviews;
@@ -65,7 +62,6 @@ public class DetailActivity extends AppCompatActivity implements YouTubePlayer.O
     LinearLayoutManager linearLayoutManager;
     RVReviewsAdapter adapter;
 
-    // TODO read videos from youtube for the detail view
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +99,7 @@ public class DetailActivity extends AppCompatActivity implements YouTubePlayer.O
         itemAnimator.setRemoveDuration(3000);
         recyclerView.setItemAnimator(itemAnimator);
         recyclerView.setLayoutManager(linearLayoutManager);
+
     }
 
     public void initDetails() {

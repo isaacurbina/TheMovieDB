@@ -26,4 +26,9 @@
     <string name="menu_popular">Populares agora</string>
     <string name="removed_from_favorites">Removido dos Favoritos</string>
     <string name="delete_favorite">Remover dos Favoritos</string>
+    <string name="detail_review_author">Autor:</string>
+    <string name="detail_review_content">La resenha vai aqui</string>
+    <string name="detaul_review_content">Comentários:</string>
+    <string name="reviews">Resenhas:</string>
+    <string name="reviews_hint">Nenhum comentário neste momento</string>
 </resources>
